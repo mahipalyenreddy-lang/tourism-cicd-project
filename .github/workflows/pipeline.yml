@@ -7,27 +7,21 @@ on:
 jobs:
   train-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r tourism_cicd_project/requirements.txt
-
       - name: Run data preparation
         run: python tourism_cicd_project/model_building/prep.py
-
       - name: Run model training
         run: python tourism_cicd_project/model_building/train.py
-
       - name: Upload model artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -36,9 +30,7 @@ jobs:
             tourism_cicd_project/model_building/best_model.joblib
             tourism_cicd_project/model_building/best_model_metadata.json
             tourism_cicd_project/model_building/experiment_tracking.csv
-
-      - name: Optional Hugging Face deployment
-        if: ${{ secrets.HF_TOKEN != '' }}
+      - name: Deploy to Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HF_SPACE_ID: mahipalyenreddy/tourism-prediction-space
