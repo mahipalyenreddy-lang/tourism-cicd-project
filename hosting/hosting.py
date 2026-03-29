@@ -13,7 +13,7 @@ if not HF_TOKEN:
     raise ValueError("HF_TOKEN is required for hosting upload.")
 
 api = HfApi(token=HF_TOKEN)
-api.create_repo(repo_id=SPACE_REPO_ID, repo_type="space", space_sdk="streamlit", exist_ok=True)
+api.create_repo(repo_id=SPACE_REPO_ID, repo_type="space", space_sdk="static", exist_ok=True)
 api.upload_folder(
     folder_path=str(DEPLOYMENT_DIR),
     repo_id=SPACE_REPO_ID,
