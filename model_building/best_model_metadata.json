@@ -1,0 +1,18 @@
+{
+  "best_model_name": "DecisionTree",
+  "best_params": {
+    "model__max_depth": null,
+    "model__min_samples_split": 2
+  },
+  "test_metrics": {
+    "model": "DecisionTree",
+    "best_params": "{\"model__max_depth\": null, \"model__min_samples_split\": 2}",
+    "cv_best_f1": 0.6685,
+    "test_accuracy": 0.8935,
+    "test_precision": 0.7205,
+    "test_recall": 0.7296,
+    "test_f1": 0.725,
+    "test_roc_auc": 0.831
+  },
+  "target_column": "ProdTaken"
+}
