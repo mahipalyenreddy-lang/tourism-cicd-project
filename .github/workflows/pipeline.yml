@@ -17,21 +17,21 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r tourism_cicd_project/requirements.txt
+          pip install -r requirements.txt
       - name: Run data preparation
-        run: python tourism_cicd_project/model_building/prep.py
+        run: python model_building/prep.py
       - name: Run model training
-        run: python tourism_cicd_project/model_building/train.py
+        run: python model_building/train.py
       - name: Upload model artifacts
         uses: actions/upload-artifact@v4
         with:
           name: tourism-model-artifacts
           path: |
-            tourism_cicd_project/model_building/best_model.joblib
-            tourism_cicd_project/model_building/best_model_metadata.json
-            tourism_cicd_project/model_building/experiment_tracking.csv
+            model_building/best_model.joblib
+            model_building/best_model_metadata.json
+            model_building/experiment_tracking.csv
       - name: Deploy to Hugging Face Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
           HF_SPACE_ID: mahipalyenreddy/tourism-prediction-space
-        run: python tourism_cicd_project/hosting/hosting.py
+        run: python hosting/hosting.py
