@@ -1,11 +1,9 @@
 name: Tourism CI-CD Pipeline
-
 on:
   push:
     branches:
       - main
   workflow_dispatch:
-
 jobs:
   train-and-deploy:
     runs-on: ubuntu-latest
